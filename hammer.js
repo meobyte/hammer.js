@@ -1,7 +1,7 @@
-/*! Hammer.JS - v1.1.3 - 2014-05-22
+/*! Hammer.JS - v1.1.3 - 2015-09-16
  * http://eightmedia.github.io/hammer.js
  *
- * Copyright (c) 2014 Jorik Tangelder <j.tangelder@gmail.com>;
+ * Copyright (c) 2015 Jorik Tangelder <j.tangelder@gmail.com>;
  * Licensed under the MIT license */
 
 (function(window, undefined) {
@@ -322,6 +322,14 @@ var Utils = Hammer.utils = {
     each: function each(obj, iterator, context) {
         var i, len;
 
+        //CUSTOM FMG Code for HTC devices.
+        //Noticed this was getting a boolean type passed in which was throwing errors; in such cases just return.
+        if(typeof obj == 'boolean')
+        {
+            return;
+        }
+        //END CUSTOM FMG Code.
+
         // native forEach on arrays
         if('forEach' in obj) {
             obj.forEach(iterator, context);
@@ -611,7 +619,7 @@ var Utils = Hammer.utils = {
      */
     toCamelCase: function toCamelCase(str) {
         return str.replace(/[_-]([a-z])/g, function(s) {
-            return s[1].toUpperCase();
+            return s.charAt(1).toUpperCase();
         });
     }
 };
