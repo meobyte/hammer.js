@@ -59,6 +59,14 @@ var Utils = Hammer.utils = {
     each: function each(obj, iterator, context) {
         var i, len;
 
+        //CUSTOM FMG Code for HTC devices.
+        //Noticed this was getting a boolean type passed in which was throwing errors; in such cases just return.
+        if(typeof obj == 'boolean')
+        {
+            return;
+        }
+        //END CUSTOM FMG Code.
+
         // native forEach on arrays
         if('forEach' in obj) {
             obj.forEach(iterator, context);
